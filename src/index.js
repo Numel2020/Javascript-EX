@@ -13,23 +13,55 @@ document.getElementById("app").innerHTML = `
 <button id="get-btn">click get</button>
 <button id="post-btn">click post</button>
 </div>
+<div data-state="show" id="spinner"></div>
+</div>
 `;
 
 let log = console.log;
 
-let cardAce = {
-  name: "Ace of Spades"
-};
+let loading = true;
 
-let cardKing = {
-  name: "King of Spades"
-};
+fetch("https://reqres.in/api/users/", {
+  method: "GET",
+  headers: {
+    "Content-type": "application/json"
+  },
+  mode: "cors"
+})
+  .then(res => {
+    if (res.ok) {
+      log("success");
+    } else {
+      log("ERROR");
+      throw new Error("BAD HTTP REQUEST");
+    }
+    return res.json();
+  })
+  .then(data => {
+    if (data) {
+      loading = false;
+      hideSpin();
+    } else {
+      loading = true;
+    }
+    // animate loading element out
+    log(data);
+    log(loading);
 
-let deck = new Map();
-deck.set("as", cardAce);
-deck.set("kc", cardKing);
-//log(deck.keys());
+    let girl = "yes";
 
-for (let keys of deck.values()) {
-  log(keys.name);
+    const foo = [{ data: data, person: girl }];
+    return foo;
+  })
+  .then(foo => {
+    let data = log(foo[0].data);
+    let person = log(foo[0].person);
+  })
+  .catch(err => log(err.message));
+
+function hideSpin() {
+  let spinner = document.getElementById("spinner");
+  spinner.setAttribute("data-state", "hide");
+
+  return spinner;
 }

@@ -1,3 +1,82 @@
 body {
-  font-family: sansserif;
+  padding: 20px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+#users {
+  max-width: 40rem;
+}
+#users li {
+  background: #fff;
+  border: 1px solid #bbb;
+  list-style: none;
+  margin: 1rem;
+  border-top-right-radius: 20px;
+}
+#users p {
+  padding: 0.5rem 2rem;
+}
+#users .name {
+  color: #000;
+  font-size: 2rem;
+}
+#users .info {
+  background: #ddd;
+  color: #666;
+  font-size: 1.4rem;
+}
+#spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(red, green, blue, alpha);
+}
+
+#spinner[data-state="hide"] {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+#spinner::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #f25a41;
+  border-radius: 100%;
+  will-change: transform;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
