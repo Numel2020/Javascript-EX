@@ -1,7 +1,3 @@
-body {
-  padding: 20px;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -11,6 +7,48 @@ html {
   font-size: 16px;
   line-height: 1.5;
   font-family: sans-serif;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: space-evenly;
+}
+nav {
+  background-color: blue;
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  background-color: pink;
+  outline: 1px solid black; /*for easy visualisation */
+  z-index: 0;
+  position: relative;
+}
+
+.box {
+  background-color: lightcoral;
+  width: 200px;
+  border: 1px black solid;
+  margin: 5px;
+  padding: 10px;
 }
 #users {
   max-width: 40rem;
@@ -35,20 +73,27 @@ html {
   font-size: 1.4rem;
 }
 #spinner {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(red, green, blue, alpha);
+  background-color: rgba(44, 68, 63, 0.59);
+  z-index: 10;
 }
 
 #spinner[data-state="hide"] {
   visibility: hidden;
   opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+#spinner[data-state="show"] {
+  visibility: visible;
+  opacity: 1;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 

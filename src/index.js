@@ -1,67 +1,52 @@
 import "./styles.css";
 //import {calc} from "./part1";
 
-const text = "blood";
-
 document.getElementById("app").innerHTML = `
-<h1>Javascript bootcamp</h1>
-<div>
-  We use ${text} Parcel to bundle this sandbox, you can find more info about Parcel
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-<div>
-<button id="get-btn">click get</button>
-<button id="post-btn">click post</button>
-</div>
-<div data-state="show" id="spinner"></div>
+<header><h1>Javascript bootcamp</h1></header>
+<nav><button id="btnGo">Go Fetch Something</button></nav>
+<main>
+<div class="box">Box 1</div>
+<div class="box">Box 2</div>
+<div id="spinner" data-state="hide"></div>
+
+</main>
+
 </div>
 `;
 
 let log = console.log;
 
-let loading = true;
+// document.addEventListener("DOMContentLoaded", () => {
+//   log("cool");
+//   document.getElementById("btnGo").addEventListener("click", doFetch);
+// });
 
-fetch("https://reqres.in/api/users/", {
-  method: "GET",
-  headers: {
-    "Content-type": "application/json"
-  },
-  mode: "cors"
-})
-  .then(res => {
-    if (res.ok) {
-      log("success");
-    } else {
-      log("ERROR");
-      throw new Error("BAD HTTP REQUEST");
-    }
-    return res.json();
-  })
-  .then(data => {
-    if (data) {
-      loading = false;
-      hideSpin();
-    } else {
-      loading = true;
-    }
-    // animate loading element out
-    log(data);
-    log(loading);
+document.addEventListener("DOMContentLoaded", event => {
+  log("DOM fully loaded and parsed");
+});
 
-    let girl = "yes";
+// function doFetch(ev) {
+//   log("cool");
+//   ev.preventDefault();
+//   loadSpinnerState('show');
 
-    const foo = [{ data: data, person: girl }];
-    return foo;
-  })
-  .then(foo => {
-    let data = log(foo[0].data);
-    let person = log(foo[0].person);
-  })
-  .catch(err => log(err.message));
+//   fetch("https://reqres.in/api/users/")
+// .then((resp) => resp.json())
+// .then(showContent)
+// .catch(fail)
+//.finally(hideLoading);
+//}
 
-function hideSpin() {
-  let spinner = document.getElementById("spinner");
-  spinner.setAttribute("data-state", "hide");
+// function loadSpinnerState(prop) {
+//   let spinner = document.getElementById("spinner");
+//   spinner.setAttribute("data-state", `${prop}`);
+// }
 
-  return spinner;
-}
+// function showContent(data) {
+//   console.log("we got the content");
+//   console.log(data);
+// }
+// function fail(err) {
+//   console.warn("Something went wrong with the fetch");
+//   console.warn(err.message);
+// }
